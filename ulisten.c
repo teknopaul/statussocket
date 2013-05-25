@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 		port = atoi(argv[1]);
 		if (port == 0) port = 9999;
 	}
-	printf("Listening on %d\n", port);
 	
 	memset((char *) &si_me, 0, sizeof(si_me));
 	
