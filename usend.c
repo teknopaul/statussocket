@@ -1,15 +1,17 @@
 /*
  *
- * Name: sendudp
- * Version: 1.0
- * Owner: Ahmed Jolani
- * Email: ahmed.jolani@gmail.com
+ * Name: sendudp (renamed usend)
+ * Version: 1.1
+ * Owner: Ahmed Jolani, Paul Hinds
+ * Email: ahmed.jolani@gmail.com, teknopaul@github.com
+ *
  * License: Commons Attribution 3.0 License (CC3)
  * Description: sendudp is a tool that allow you to test any UDP port, sendudp doesn't
  * guarantee the delivery of the sent packets, it only send the packets for you to test your
  * UDP application/software. Feel free to contribute to this tool and enhance it, please
  * email me with any contribution to keep me updated.
  *
+ * Ported to C by teknopaul
  */
 
 #include <stdio.h>
