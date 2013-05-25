@@ -124,7 +124,7 @@ int main(int argc, char * argv[]) {
 
 	int len = strlen(message);
 	
-	int bytesSent = sendto(socket_fd, message, len > 1024 ? 1024 :  len, 0, p->ai_addr, p->ai_addrlen);
+	int bytesSent = sendto(socket_fd, message, len > 1024 ? 1024 : len, 0, p->ai_addr, p->ai_addrlen);
 	if (bytesSent == -1) {
 		fprintf(stderr, "Error [socket send]\n");
 		return -2;
