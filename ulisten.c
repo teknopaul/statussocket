@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define BUFLEN 1501
+#define BUFLEN 512
 #define NPACK 10
 
 void diep(char *s)
@@ -50,21 +50,21 @@ int main(int argc, char *argv[])
 	printf("Listening on %d\n", port);
 
 	for ( i = 0 ; i < NPACK ; i++) {
-		ssize_t recv_len = 0;		
-		if ( (recv_len = recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *)&si_other, &slen)) == -1 ) {
+		int mes_len = 0;
+		if ( (mes_len = recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *)&si_other, &slen)) == -1 ) {
 			diep("recvfrom()");
 		}
 		
-		printf("Packet from %s:%d data: \"%s\"\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port), buf);
+		printf("Received packet from %s:%d len %d\nData: %s\n\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port), mes_len, buf);
 		
 		FILE *cmd_file = fopen("/var/ops/command", "w+");
 		if (cmd_file == NULL) {
 			diep("Cant write to /var/ops/command");
 			return 1;
 		}
-		buf[recv_len] = 0;
-		fputs(buf, cmd_file);
-		//fwrite(buf, sizeof(char), recv_len, cmd_file);
+		// buf is not a null terminated string
+		//fputs(buf, cmd_file);
+		fwrite(buf, sizeof(char), mes_len, cmd_file);
 		fclose(cmd_file);
 	}
 
