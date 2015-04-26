@@ -7,3 +7,27 @@ and
 
 but without the gip.
 
+
+The server side can run predefined commands.
+
+/etc/ops.allow defines the commands that are available
+
+    #
+    # Commands to run as root
+    #
+
+    echo     echo hello world
+    reboot   init 6
+   
+/var/ops/command should have a list of command permitted on this host.
+
+    echo
+    reboot
+
+Security implications of this should be obvious.
+
+It is not possible to run arbitrary commands (that would be silly) or to pass arguments.
+
+If you want a more elaborate solution for this problem with security concerns addressed and a mechanism to pass arguments look at nagios.
+
+
